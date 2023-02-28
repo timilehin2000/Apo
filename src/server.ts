@@ -3,6 +3,7 @@ import cors from "cors";
 import { config } from "dotenv";
 import handleRouting from "./routing";
 import establishDbConnection from "./config";
+import { handleLogs } from "./config/logger";
 
 config();
 
@@ -12,6 +13,8 @@ export default async function startApplication(
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
     app.use(cors());
+
+    app.use(handleLogs);
 
     await establishDbConnection();
 

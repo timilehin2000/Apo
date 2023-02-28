@@ -1,4 +1,5 @@
 import { Request, Response, Application } from "express";
+import { logErrorToConsole } from "./config/logger";
 import authRouter from "./routes/auth.route";
 
 export default function handleRouting(app: Application) {
@@ -11,5 +12,10 @@ export default function handleRouting(app: Application) {
             error: "lol, and Just Like That, You Completely Lost Your Way",
             reqUrl: req.originalUrl,
         });
+    });
+
+    // Error Handler
+    app.use((error: Error) => {
+        logErrorToConsole(error);
     });
 }

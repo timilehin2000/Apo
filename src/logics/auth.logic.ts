@@ -45,10 +45,12 @@ class AuthLogics {
             );
         }
 
-        const comparePassword = User.comparePasswords(
+        const comparePassword = await User.comparePasswords(
             payload.password,
             existingUser.password
         );
+
+        console.log(comparePassword);
 
         if (!comparePassword) {
             return Responses.makeResponse(

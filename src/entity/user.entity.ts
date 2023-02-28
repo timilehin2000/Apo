@@ -1,10 +1,11 @@
 import bcrypt from "bcrypt";
-import { BeforeInsert, Column, Entity } from "typeorm";
+import { BeforeInsert, Column, Entity, Index } from "typeorm";
 import Utils from "../helpers/utils/utils";
 import Model from "./base.entity";
 
 @Entity("users")
 export class User extends Model {
+    @Index({ unique: true })
     @Column()
     email: string;
 
@@ -16,6 +17,9 @@ export class User extends Model {
 
     @Column({ nullable: true })
     profilePicture: string;
+
+    @Column({ nullable: true, unique: true })
+    userName: string;
 
     @BeforeInsert()
     async hashPassword() {
