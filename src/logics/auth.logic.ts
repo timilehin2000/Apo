@@ -21,6 +21,8 @@ class AuthLogics {
 
         const user = await UserServices.createNewUser(payload);
 
+        // const account =
+
         return Responses.makeResponse(
             true,
             "Successfully created a new user",

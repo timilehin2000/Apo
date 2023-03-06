@@ -8,6 +8,12 @@ export class Account extends Model {
     @JoinColumn()
     user: User;
 
-    @Column({ type: "decimal", precision: 20, scale: 4, default: 0.0 })
+    @Column({
+        type: "decimal",
+        precision: 20,
+        scale: 4,
+        default: 0.0,
+        nullable: true,
+    })
     balance: number;
 }
