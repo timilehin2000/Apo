@@ -11,14 +11,14 @@ class Utils {
         }
     }
 
-    static signToken(email: string) {
-        const token = jwt.sign({ email }, process.env.JWT_SECRET_KEY, {
-            algorithm: "HS256",
-            expiresIn: "3d",
-        });
+    // static signToken(email: string) {
+    //     const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+    //         algorithm: "HS256",
+    //         expiresIn: "3d"
+    //     });
 
-        return token;
-    }
+    //     return token;
+    // }
 }
 
 export default Utils;

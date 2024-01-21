@@ -1,8 +1,5 @@
-import { Application } from "express";
-import authRouter from "./auth.route";
+import { Router } from "express";
 
-const index = (app: Application) => {
-    app.use("api/v1", authRouter);
-};
+const router: Router = Router();
 
-export default index;
+export default router;

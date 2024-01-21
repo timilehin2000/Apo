@@ -1,27 +1,17 @@
-import express, { Application } from "express";
-import cors from "cors";
-import { config } from "dotenv";
-import handleRouting from "./routing";
-import establishDbConnection from "./config";
-import { handleLogs } from "./config/logger";
+import http from "http";
+import app from "./app";
+import { env } from "./env.config";
+import { connectDB } from "./config/connect";
 
-config();
+const server = http.createServer(app);
 
-export default async function startApplication(
-    app: Application
-): Promise<void> {
-    app.use(express.urlencoded({ extended: true }));
-    app.use(express.json());
-    app.use(cors());
+const { APP_PORT: port } = env;
 
-    app.use(handleLogs);
-
-    await establishDbConnection();
-
-    const port = process.env.PORT || 8000;
-    app.listen(port, () => {
-        console.log("app is running,,,");
+const startServer = async (): Promise<void> => {
+    await connectDB();
+    server.listen(port, () => {
+        console.log(`Server listening on port: ${port}`);
     });
+};
 
-    handleRouting(app);
-}
+startServer();
